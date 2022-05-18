@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stly.css">
+    <title>Vue.js</title>
+</head>
+<body>
+  <form>
+    <div id="hello-word">
+        <div v-html="htmlContent"></div>
+        <h1> Cantando na Chuva</h1>
+       
+        <h3>Ajude o Lucas a cantar ou não na Chuva</h3>
+          <p>Primeiro Nome: {{firstName}}</p>
+          <p>Sobrenome: {{lastName}}</p>
+          <label for="input-age">Idade:</label>
+          <input id="input-age" type="text" v-model="age">
+          <p>{{ age >= 18 ? 'Maior de idade - Pode cantar na chuva' :'Menor de idade - Não pode cantar na Chuva'}}</p>
+        
+          
+          <h3>Se o Lucas não poder cantar na chuva agora ele vai contar com a sua sorte para isso aconte</h3>
+          <div>
+            
+          <h5>Agora escolha um número de entre 0 a 100</h5>
+       
+          <label for="input-grade">Número:</label>
+          <input id="input-grade" type="text" v-model="grade">
+          <p v-if="grade <= 20">Aprovado - O Lucas vai cantar na chuva</p>
+          <p v-else-if="grade >= 40 && grade <= 50">Reprovado - O Lucas não vai cantar na chuva</p>
+          <p v-else-if="grade >= 60 && grade <= 80">Aprovado - O Lucas vai cantar na chuva</p>
+          <p v-else-if="grade >= 90 && grade <= 100">Reprovado - O Lucas não vai cantar na chuva</p>
+          <p v-else>Valor inálido</p>
+        </div>
+      </form>
+        
+  
+
+        <script src="https://unpkg.com/vue@3.0.4"></script>
+
+        <script>
+            const app = {
+              data() {
+                return {
+                  firstName: "Lucas",
+                  lastName: "Afonso",
+                  age: "",
+                  grade: "" ,
+                 
+                
+                }
+            },
+            methods: {
+          incrementAge() {
+           this.age++;
+          },
+          decrementeAge(){
+              this.age--;
+          }
+
+        },
+
+        computed:{
+            fullName: function(){
+                return `${this.firstName} ${this.lastName}`;
+            }
+        },
+
+  
+        }
+        const vm = Vue.createApp(app).mount("#hello-word");
+</script>
+</body>
+</html>
